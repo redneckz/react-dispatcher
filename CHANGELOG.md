@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.0.2] - 2019-09-18
+
+### Fixed
+
+-   Drone CI publish pipeline
+
 ## 0.0.1 - 2019-09-18
 
 ### Added
