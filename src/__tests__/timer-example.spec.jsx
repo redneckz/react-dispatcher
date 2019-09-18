@@ -15,16 +15,11 @@ describe('Timer example', () => {
 
   const timerReducer = (state, { type, payload }) => {
     switch (type) {
-      case 'RESET':
-        return { count: payload || 0, en: false };
-      case 'START':
-        return { ...state, en: true };
-      case 'STOP':
-        return { ...state, en: false };
-      case 'INC':
-        return state.en ? { ...state, count: state.count + 1 } : state;
-      default:
-        return state;
+      case 'RESET': return { count: payload || 0, en: false };
+      case 'START': return { ...state, en: true };
+      case 'STOP': return { ...state, en: false };
+      case 'INC': return state.en ? { ...state, count: state.count + 1 } : state;
+      default: return state;
     }
   };
 
@@ -37,11 +32,13 @@ describe('Timer example', () => {
       state,
       React.useCallback(label ? scopedDispatch : dispatch, [dispatch, label]),
     );
+
     React.useEffect(() => {
       dispatch({ type: 'RESET' });
       const timerId = setInterval(() => dispatch({ type: 'INC' }), timeout);
       return () => clearInterval(timerId);
     }, [dispatch, timeout]);
+
     return <span>{state.count || 0}</span>;
   }
 
@@ -69,10 +66,12 @@ describe('Timer example', () => {
         <TimerControl type="START" />
       </>,
     );
+
     act(() => {
       wrapper.find('TimerControl').simulate('click');
       jest.advanceTimersByTime(1000);
     });
+
     expect(timerText(wrapper)(0)).toBe('1');
     expect(timerText(wrapper)(1)).toBe('1');
   });
@@ -85,10 +84,12 @@ describe('Timer example', () => {
         <Timer label="bar" />
       </>,
     );
+
     act(() => {
       wrapper.find('TimerControl').simulate('click');
       jest.advanceTimersByTime(1000);
     });
+
     expect(timerText(wrapper)(0)).toBe('1');
     expect(timerText(wrapper)(1)).toBe('0');
   });

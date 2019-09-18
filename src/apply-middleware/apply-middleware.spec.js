@@ -14,15 +14,19 @@ describe('applyMiddleware', () => {
   describe('as useDispatcher hook wrapper', () => {
     it('should pass appropriate args (state, dispatch) down to wrapped useDispatcher hook', () => {
       const wrappedHook = applyMiddleware()(useDispatcher);
+
       wrappedHook(state, dispatch);
+
       expect(useDispatcher).toBeCalledWith(state, dispatch);
     });
 
     it('should wrap dispatcher function produced by wrapped useDispatcher hook', () => {
       const wrappedHook = applyMiddleware()(useDispatcher);
+
       const wrappedDispatcher = wrappedHook(state, dispatch);
       const action = { type: 'ACTION' };
       wrappedDispatcher(action);
+
       expect(dispatcher).toBeCalledWith(action);
     });
   });
@@ -31,7 +35,9 @@ describe('applyMiddleware', () => {
     it('should supply each middleware with appropriate state (as field of store)', () => {
       const identityMiddleware = jest.fn(() => (next) => next);
       const wrappedHook = applyMiddleware(identityMiddleware)(useDispatcher);
+
       wrappedHook(state, dispatch);
+
       const store = identityMiddleware.mock.calls[0][0]; // first arg
       expect(store.dispatch).toBe(dispatcher);
     });
@@ -39,7 +45,9 @@ describe('applyMiddleware', () => {
     it('should supply each middleware with dispatcher function (as field of store)', () => {
       const identityMiddleware = jest.fn(() => (next) => next);
       const wrappedHook = applyMiddleware(identityMiddleware)(useDispatcher);
+
       wrappedHook(state, dispatch);
+
       const store = identityMiddleware.mock.calls[0][0]; // first arg
       expect(store.getState()).toBe(state);
     });
@@ -53,8 +61,10 @@ describe('applyMiddleware', () => {
       const wrappedHook = applyMiddleware(echoMiddleware, fooMiddleware)(
         useDispatcher,
       );
+
       const wrappedDispatcher = wrappedHook(state, dispatch);
       wrappedDispatcher({ type: 'ACT' });
+
       expect(dispatcher).toBeCalledWith({ type: 'ECHO', payload: state });
       expect(dispatcher).toBeCalledWith({ type: 'ACT', meta: { foo: 123 } });
     });

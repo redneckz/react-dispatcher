@@ -32,7 +32,8 @@
   },
   "devDependencies": {
     "@redneckz/react-lib-config": "0.0.8",
-    "enzyme": "3.10.0"
+    "enzyme": "3.10.0",
+    "redux-thunk": "2.3.0"
   },
   "scripts": {
     "prepare": "npm run build",

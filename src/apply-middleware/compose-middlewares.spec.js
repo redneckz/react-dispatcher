@@ -20,7 +20,9 @@ describe('composeMiddlewares', () => {
     const fooMiddleware = jest.fn(identityMiddleware);
     const barMiddleware = jest.fn(identityMiddleware);
     const composedMiddleware = composeMiddlewares(fooMiddleware, barMiddleware);
+
     composedMiddleware(store)()({ type: 'ACTION' });
+
     expect(fooMiddleware).toBeCalledWith(store);
     expect(barMiddleware).toBeCalledWith(store);
   });
@@ -32,14 +34,18 @@ describe('composeMiddlewares', () => {
       payload: action.payload * action.payload,
     });
     const composedMiddleware = composeMiddlewares(inc, square);
+
     composedMiddleware(store)()({ type: 'ACTION', payload: 9 });
+
     expect(dispatch).toBeCalledWith({ type: 'ACTION', payload: 100 });
   });
 
   it('should produce dispatching middleware if no middlewares provided', () => {
     const dispatchingMiddleware = composeMiddlewares();
+
     const action = { type: 'ACTION' };
     dispatchingMiddleware(store)()(action);
+
     expect(dispatch).toBeCalledWith(action);
   });
 });

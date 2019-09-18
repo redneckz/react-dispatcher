@@ -1,0 +1,5 @@
+{
+  "editor.formatOnSave": false,
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true
+}
