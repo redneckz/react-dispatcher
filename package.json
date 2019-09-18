@@ -19,13 +19,15 @@
   },
   "homepage": "https://github.com/redneckz/react-dispatcher#readme",
   "main": "lib/index.js",
+  "types": "./react-dispatcher.d.ts",
   "module": "es/index.js",
   "browser": "dist/index.min.js",
   "files": [
     "src",
     "lib",
     "es",
-    "dist"
+    "dist",
+    "react-dispatcher.d.ts"
   ],
   "peerDependencies": {
     "react": "^16.9.0-0"
