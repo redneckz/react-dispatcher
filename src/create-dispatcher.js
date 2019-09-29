@@ -11,8 +11,7 @@ export function createDispatcher() {
     return () => storesMap.delete(dispatch);
   }
   return function useDispatcher(state, dispatch) {
-    register(state, dispatch);
-    useEffect(() => register(state, dispatch));
+    useEffect(() => register(state, dispatch), [state, dispatch]);
     return dispatcher;
   };
 }
