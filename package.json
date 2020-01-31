@@ -33,8 +33,8 @@
     "react": "^16.9.0-0"
   },
   "devDependencies": {
-    "@redneckz/react-lib-config": "0.0.8",
-    "enzyme": "3.10.0",
+    "@redneckz/react-lib-config": "0.0.10",
+    "enzyme": "3.11.0",
     "redux-thunk": "2.3.0"
   },
   "scripts": {
